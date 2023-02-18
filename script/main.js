@@ -16,6 +16,25 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 // because wee need it in the handledrop function
 draggedPiece;
 
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    if (event.target.tagName === 'IMG' || event.target.classList.contains('dropped')) {
+      return;
+    } else {
+      event.target.appendChild(document.getElementById(data));
+      event.target.classList.add('dropped');
+      var currentDraggable = document.getElementById(data);
+      currentDraggable.removeAttribute('draggable');
+      currentDraggable.style.cursor = 'default';
+      currentDraggable.style.position = 'static';
+      currentDraggable.style.top = '';
+      currentDraggable.style.left = '';
+    }
+  }
+  
+
+
 
 //step 3
 //functionality always goes in the middle -> how do we want
@@ -78,8 +97,46 @@ theButtons.forEach(button => button.addEventListener("click",changeBGImage));
 
 //add the drag event handling to the puzzle pieces
 puzzlePieces.forEach(piece => piece.addEventListener('dragstart',handleStartDrag));
+function createPuzzlePieces(puzzleIndex) {
+    // Remove any existing puzzle pieces
+    const dragZone = document.querySelector(`#pz${puzzleIndex}_drag_zone`);
+    while (dragZone.firstChild) {
+      dragZone.removeChild(dragZone.firstChild);
+    }
+  
+    const img = `images/puzzle${puzzleIndex}.jpg`;
+    const pieces = 12;
+  
+    // Add puzzle pieces to drag zone
+    for (let i = 0; i < pieces; i++) {
+      const newPuzzlePiece = document.createElement("img");
+      newPuzzlePiece.setAttribute("src", img);
+      newPuzzlePiece.setAttribute("draggable", "true");
+      newPuzzlePiece.setAttribute("id", `piece${i}`);
+      newPuzzlePiece.setAttribute("class", "puzzle-piece");
+      newPuzzlePiece.style.border = "2px solid black";
+      dragZone.appendChild(newPuzzlePiece);
+    }
+  
+    // Remove or reparent puzzle pieces in drop zones
+    resetBoard();
+  }
+  
+  function resetBoard() {
+    const dropZones = document.querySelectorAll(".drop-zone");
+    dropZones.forEach((dropZone) => {
+      while (dropZone.firstChild) {
+        const removedPiece = dropZone.removeChild(dropZone.firstChild);
+        const dragZone = document.querySelector(`#${removedPiece.dataset.drag}`);
+        dragZone.appendChild(removedPiece);
+      }
+    });
+  }
+  
+
 
 //add the dragover AND the drop event handling to the drop zones
+
 dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
 
 //add the drop event handling
