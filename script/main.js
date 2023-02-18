@@ -29,7 +29,7 @@ function handleStartDrag() {
 }
 
 
-
+{
     // add the dropped piece to the drop zone
     dropZone.appendChild(draggedPiece);
 
