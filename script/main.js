@@ -132,8 +132,6 @@ function createPuzzlePieces(puzzleIndex) {
       }
     });
   }
-  
-
 
 //add the dragover AND the drop event handling to the drop zones
 
