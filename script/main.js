@@ -8,7 +8,6 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 
     draggedPiece = null; 
 
-
 function handleDragOver(e) { 
     e.preventDefault(); 
     console.log('dragged over me');
