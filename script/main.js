@@ -1,27 +1,15 @@
+// let theButton = document.querySelector("#buttonOne");
 let theButtons = document.querySelectorAll("#buttonHolder img"),
     theHeading = document.querySelector("#headLine h1"),
     puzzleBoard = document.querySelector(".puzzle-board"),
     puzzlePieces = document.querySelectorAll(".puzzle-pieces img"),
-    dropZones = document.querySelectorAll('.drop-zone'),
-    mainBoard = document.querySelector('.puzzle-pieces'),
+    dropZones = document.querySelectorAll(".drop-zone"),
+    mainBoard = document.querySelector(".puzzle-pieces"),
 
     draggedPiece = null; 
 
+// fixing 2nd
 
-function changeBGImage() {
-    dropZones.forEach(zone => {
-        while (zone.firstChild) {
-            zone.removeChild(zone.firstChild);
-        }
-    });
-
-    puzzlePieces.forEach(piece => {
-        piece.classList.remove("dropped");
-        mainBoard.appendChild(piece);
-    });
-
-    puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
-}
 
 function handleStartDrag() { 
     console.log('started dragging this piece:', this);
@@ -57,6 +45,7 @@ function handleDrop(e) {
     draggedPiece = null;
 }
 
+// event handling
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
 
 puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDrag));
