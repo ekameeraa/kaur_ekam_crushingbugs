@@ -1,25 +1,9 @@
-// let theButton = document.querySelector("#buttonOne");
+
 let theButtons = document.querySelectorAll("#buttonHolder img"),
     theHeading = document.querySelector("#headLine h1"),
     puzzleBoard = document.querySelector(".puzzle-board"),
     puzzlePieces = document.querySelectorAll(".puzzle-pieces img"),
-    dropZones = document.querySelectorAll(".drop-zone"),
-    mainBoard = document.querySelector(".puzzle-pieces"),
 
-    draggedPiece = null; 
-
-function handleDragOver(e) { 
-    e.preventDefault(); 
-    console.log('dragged over me');
-}
-
-function handleDrop(e) {
-    e.preventDefault();
-    console.log('dropped something on me');
-
-    const dropZone = this;
-
-    // check if the drop zone has a piece already
     const existingPiece = dropZone.querySelector('img');
     if (existingPiece) {
         puzzleBoard.insertBefore(draggedPiece, existingPiece);
@@ -37,7 +21,7 @@ function handleDrop(e) {
     draggedPiece = null;
 }
 
-// event handling
+
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
 
 puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDrag));
