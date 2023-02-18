@@ -8,28 +8,6 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 
     draggedPiece = null; 
 
-// fixing 2nd
-
-function changeBGImage() {
-    dropZones.forEach(zone => {
-        while (zone.firstChild) {
-            zone.removeChild(zone.firstChild);
-        }
-    });
-
-    puzzlePieces.forEach(piece => {
-        piece.classList.remove("dropped");
-        mainBoard.appendChild(piece);
-    });
-
-    puzzleBoard.style.backgroundImage = `url(images/backGround${this.id}.jpg)`;
-}
-
-function handleStartDrag() { 
-    console.log('started dragging this piece:', this);
-    draggedPiece = this;
-}
-
 function handleDragOver(e) { 
     e.preventDefault(); 
     console.log('dragged over me');
