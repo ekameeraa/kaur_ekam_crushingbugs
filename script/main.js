@@ -8,13 +8,6 @@ let theButtons = document.querySelectorAll("#buttonHolder img"),
 
     draggedPiece = null; 
 
-// fixing 2nd
-
-
-function handleStartDrag() { 
-    console.log('started dragging this piece:', this);
-    draggedPiece = this;
-}
 
 function handleDragOver(e) { 
     e.preventDefault(); 
