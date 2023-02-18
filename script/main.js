@@ -28,8 +28,25 @@ function handleStartDrag() {
     draggedPiece = this;
 }
 
+function handleDragOver(e) { 
+    e.preventDefault(); 
+    console.log('dragged over me');
+}
 
-{
+function handleDrop(e) {
+    e.preventDefault();
+    console.log('dropped something on me');
+
+    const dropZone = this;
+
+    // check if the drop zone has a piece already
+    const existingPiece = dropZone.querySelector('img');
+    if (existingPiece) {
+        puzzleBoard.insertBefore(draggedPiece, existingPiece);
+        dropZone.removeChild(existingPiece);
+        mainBoard.appendChild(existingPiece);
+    }
+
     // add the dropped piece to the drop zone
     dropZone.appendChild(draggedPiece);
 
