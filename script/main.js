@@ -131,6 +131,9 @@ function createPuzzlePieces(puzzleIndex) {
   }
 
 //add the dragover AND the drop event handling to the drop zones
+theButtons.forEach(button => button.addEventListener("click", changeBGImage));
+
+puzzlePieces.forEach(piece => piece.addEventListener("dragstart", handleStartDrag));
 
 dropZones.forEach(zone => zone.addEventListener("dragover", handleDragOver));
 
