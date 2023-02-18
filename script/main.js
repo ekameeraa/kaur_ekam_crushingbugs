@@ -33,9 +33,6 @@ function drop(event) {
     }
   }
   
-
-
-
 //step 3
 //functionality always goes in the middle -> how do we want
 //the app to behave?
